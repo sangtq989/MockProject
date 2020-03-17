@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form add employee</title>
+    <%@ include file="include/header.jsp" %>
+    <%@ include file="include/sidebar.jsp" %>
+    <form action="#" method="post" id="tripForm">
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Destination</label>
+            <div class="col-md-9">
+                <input type="text" placeholder="Enter your Destination" class="form-control" name="destination">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Departure time</label>
+            <div class="col-md-9">
+                <input type="text" placeholder="Enter departure time" class="form-control" name="departureTime">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Driver</label>
+            <div class="col-md-9">
+                <input type="text" placeholder="Enter driver name" class="form-control" name ="driver">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Car type</label>
+            <div class="col-md-9">
+                <input type="text" placeholder="Enter your car type" class="form-control" name="carType">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Max slot</label>
+            <div class="col-md-9">
+                <input type="number" class="form-control" name="maximumOnlineTicketNumber">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Departure date</label>
+            <div class="col-md-9">
+                <input type="date" placeholder="Enter your Departure date" class="form-control" name="departureDate">
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="" class="col-md-3 col-form-label"></label>
+            <div class="col-md-9">
+                <button class="btn btn-primary" type="submit">OK</button>
+            </div>
+        </div>   
+    </form>
+ <%@ include file="include/footer.jsp" %>
+    <script src="../public\js\jquery-3.4.1.js"></script>
+	<script src="../public\js\bootstrap.js"></script>
+    <script src="../public\js\scripts.js"></script>
+    <script src="../public\js/validate/jquery.validate.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script src="../public/js/validate/TripValidate.js"></script>
+</body>
+</html>
