@@ -3,6 +3,10 @@ $(document).ready(function() {
 		var reg = /^\D*$/;
 		return value.trim().match(reg);
 	},""); 
+	$.validator.addMethod("isNum", function(value){
+		var reg = /[+-]?([0-9]*[.])?[0-9]+/;
+		return value.trim().match(reg);
+	}, "");
 	$("#employeeForm").validate({
 		errorElement: 'div',
 			errorPlacement: function(label, element) {

@@ -45,8 +45,7 @@ $(document).ready(function() {
 			},
 
 			place:{
-				required: "Please choose place",
-				isNum: "Must be number"
+				required: "Please choose place",				
 			},
             
             area:{
@@ -58,7 +57,7 @@ $(document).ready(function() {
 			price: {
 				required: "Please enter price",				
 				maxlength: "Price max 50 characters",
-				digits: "Must be number"
+				isNum: "Must be number"
 			},
 			
 

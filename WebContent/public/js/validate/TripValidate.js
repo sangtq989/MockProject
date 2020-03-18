@@ -5,6 +5,10 @@ $(document).ready(
 			return value.trim().match(reg);
 		}, ""
 		);
+		$.validator.addMethod("isNum", function(value){
+			var reg = /[+-]?([0-9]*[.])?[0-9]+/;
+			return value.trim().match(reg);
+		}, "");
 		$("#tripForm").validate({
 			errorElement: 'div',
 			errorPlacement: function(label, element) {

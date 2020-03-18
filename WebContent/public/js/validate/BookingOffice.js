@@ -13,7 +13,10 @@ $(document).ready(function() {
 			return isNaN(value) && isNaN($(params).val()) 
 				|| (Number(value) > Number($(params).val())); 
 		},'Must be greater than {0}.');
-
+	$.validator.addMethod("isNum", function(value){
+		var reg = /[+-]?([0-9]*[.])?[0-9]+/;
+		return value.trim().match(reg);
+	}, "");
 
 	$("#bookingOfficeForm").validate({
 		errorElement: 'div',
@@ -54,7 +57,7 @@ $(document).ready(function() {
 				required: true,
 				minlength: 1,
 				maxlength: 50,
-				digits: true
+				isNum: true
 			},
 
 			contractdeadlineFrom: {			
@@ -93,7 +96,7 @@ $(document).ready(function() {
 				required: "Please enter price",
 				minlength: "Price must be at least 1 characters",
 				maxlength: "Price max 50 characters",
-				digits: "Must be number"
+				isNum: "Must be number"
 			},
 			contractdeadlineFrom: {
 				required: "Please enter contract deadline from"

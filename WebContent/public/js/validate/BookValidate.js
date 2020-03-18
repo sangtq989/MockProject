@@ -13,6 +13,10 @@ $(document).ready(
 			}
 		}, ""
 	);
+		$.validator.addMethod("isNum", function(value){
+			var reg = /[+-]?([0-9]*[.])?[0-9]+/;
+			return value.trim().match(reg);
+		}, "");
 		$("#bookingForm").validate({
 			errorElement: 'div',
 			errorPlacement: function(label, element) {
@@ -30,7 +34,7 @@ $(document).ready(
 				},
 				price:{
 					required: true,
-					digits: true
+					isNum: true
 				},
 				datePublished:{
 					required: true,
@@ -55,7 +59,7 @@ $(document).ready(
 				},
 				price:{
 					required: "Please enter book price",
-					digits: "Number only"
+					isNum: "Number only"
 				},
 				datePublished:{
 					required: "Please choose date",
