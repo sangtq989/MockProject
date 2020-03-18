@@ -14,17 +14,22 @@ import nhom1.dao.EmployeeDAO;
 import nhom1.model.Employee;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class EmployeeServlet
  */
 @WebServlet("/EmployeeServlet")
 public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EmployeeDAO empDAO;
-	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public void init() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EmployeeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    public void init() {
 		 empDAO = new EmployeeDAO();
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -72,8 +77,17 @@ public class EmployeeServlet extends HttpServlet {
 
 	}
 
-	private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
-				
+	private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+			Integer id = Integer.parseInt(request.getParameter("empID"));
+			if (empDAO.deleteEmployee(id)) {
+				response.sendRedirect(request.getContextPath() + "/EmployeeServlet");
+				request.setAttribute("sucess", "Delete sucessfuly");
+			} else {
+				request.setAttribute("message", "Something went wrong!");
+				request.getRequestDispatcher("/EmployeeServlet").forward(request, response);
+			}	
+		
+			
 	}
 
 	private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
@@ -97,6 +111,5 @@ public class EmployeeServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("form/table-employee.jsp");
 		dispatcher.forward(request, response);		
 	}
-
 
 }

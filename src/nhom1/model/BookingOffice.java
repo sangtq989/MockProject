@@ -1,7 +1,5 @@
 package nhom1.model;
 
-import java.util.List;
-
 public class BookingOffice {
 	private int officeId;
 	private String endContractDeadline;
@@ -11,8 +9,21 @@ public class BookingOffice {
 	private double officePrice;
 	private String startContractDeadline;
 	private int tripId;
+	private Trip trip;
 	public BookingOffice() {
 		super();
+	}
+	public BookingOffice(int officeId,String endContractDeadline, String officeName, String officePhone, String officePlace,
+			double officePrice, String startContractDeadline, Trip trip) {
+		super();
+		this.officeId = officeId;
+		this.endContractDeadline = endContractDeadline;
+		this.officeName = officeName;
+		this.officePhone = officePhone;
+		this.officePlace = officePlace;
+		this.officePrice = officePrice;
+		this.startContractDeadline = startContractDeadline;
+		this.trip = trip;
 	}
 	public BookingOffice(int officeId, String endContractDeadline, String officeName, String officePhone,
 			String officePlace, double officePrice, String startContractDeadline, int tripId) {
@@ -85,12 +96,20 @@ public class BookingOffice {
 	public void setTripId(int tripId) {
 		this.tripId = tripId;
 	}
+	public Trip getTrip() {
+		return trip;
+	}
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
 	@Override
 	public String toString() {
 		return "BookingOffice [officeId=" + officeId + ", endContractDeadline=" + endContractDeadline + ", officeName="
 				+ officeName + ", officePhone=" + officePhone + ", officePlace=" + officePlace + ", officePrice="
-				+ officePrice + ", startContractDeadline=" + startContractDeadline + ", tripId=" + tripId + "]";
+				+ officePrice + ", startContractDeadline=" + startContractDeadline + ", tripId=" + tripId + ", trip="
+				+ trip + "]";
 	}
+	
 	
 	
 }

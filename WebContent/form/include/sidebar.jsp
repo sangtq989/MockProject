@@ -25,19 +25,19 @@
                     </div>
                     <!-- drop down 1 -->
                     <div class="sb-sidenav-menu-heading">Car park managerment</div>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu1">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu6">
                         <div class="sb-nav-link-icon"></div>
                         Car manager
                         <div class="sb-sidenav-collapse-arrow"><i class="fa fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="menu1" data-parent="#sidenavAccordion">
+                    <div class="collapse" id="menu6" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/EmployeeServlet?command=LOAD_ADD">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/CarServlet?command=LOAD_ADD">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 <span class="pl-1"></span>
                                 <span class="pl-1">Add Car</span>
                             </a>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/EmployeeServlet">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/CarServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 <span class="pl-1">List Car</span>
                             </a>
@@ -51,12 +51,12 @@
                     </a>
                     <div class="collapse" id="menu2" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/BookingOfficeServlet?command=LOAD_ADD">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 <span class="pl-1"> Add booking office</span>
                                
                             </a>
-                            <a class="nav-link" href="layout-sidenav-light.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/BookingOfficeServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 <span class="pl-1">List booking office </span>
                             </a>
@@ -70,12 +70,12 @@
                     </a>
                     <div class="collapse" id="menu3" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/ParkingLotServlet?command=LOAD_ADD">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 <span class="pl-1"> Add parking lot</span>
                                
                             </a>
-                            <a class="nav-link" href="layout-sidenav-light.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/ParkingLotServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 <span class="pl-1">List parking lot</span>                                
                             </a>
@@ -89,12 +89,12 @@
                     </a>
                     <div class="collapse" id="menu4" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/TripServlet?command=LOAD_ADD">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 <span class="pl-1"> Add trip</span>
                                
                             </a>
-                            <a class="nav-link" href="layout-sidenav-light.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/TripServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 <span class="pl-1">List trip</span>
                                
@@ -109,10 +109,9 @@
                     </a>
                     <div class="collapse" id="menu5" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/TicketServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
-                                <span class="pl-1"> List ticket</span>
-                               
+                                <span class="pl-1"> List ticket</span>                               
                             </a>
                             
                         </nav>
@@ -133,5 +132,5 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
                 <div class="card mb-4">
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Title Example</div>
+                    <div class="card-header"><i class="fa fa-table mr-1"></i>Title Example</div>
                     <div class="card-body">

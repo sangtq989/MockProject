@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,34 +9,56 @@
     <title>Form add employee</title>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/sidebar.jsp" %>
-    <form action="#" method="post" id="parkingLotForm">
+        <c:if test="${not empty param.message}">
+	   	<span class="row alert alert-danger">
+			${param.message}
+        </span>
+		</c:if>
+		<c:if test="${PARKING_LOT == null}">
+			<form action="${pageContext.request.contextPath}/ParkingLotServlet?command=ADD" method="post" id="parkingLotForm">
+	    </c:if>
+	    <c:if test="${PARKING_LOT != null}">
+			<form action="${pageContext.request.contextPath}/ParkingLotServlet?command=UPDATE" method="post" id="parkingLotForm">
+			<input type="hidden" name="parkingID" value="${PARKING_LOT.parkId }"/>
+	    </c:if> 
         <div class="form-group row">
             <label for="" class="col-md-3 col-form-label">Parking name</label>
             <div class="col-md-9">
-                <input type="text" placeholder="Enter your Parking name" class="form-control" name="parkingName">
+                <input type="text" placeholder="Enter your Parking name" class="form-control" name="parkingName" value="${PARKING_LOT.parkName }">
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-3 col-form-label">Place</label>
             <div class="col-md-9">
                 <select id="" class="form-control" name="place">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    <option value ="">Choose...</option>
+                    <option value="My dinh">My dinh</option>
+                    <option value="Dong da">Dong da</option>
+                    <option value="Cau Giay">Cau Giay</option>
+                    <option value="Thanh Xua">Thanh Xuan</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="" class="col-md-3 col-form-label">Area(m²)</label>
+            <label for="" class="col-md-3 col-form-label">Area(mÂ²)</label>
             <div class="col-md-9">
-                <input type="number" class="form-control" name="area">
+                <input type="number" class="form-control" name="area" value="${PARKING_LOT.parkArea }">
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-3 col-form-label">Price</label>
             <div class="col-md-9">
-                <input type="text" placeholder="Enter price (VND)" class="form-control" name="price">
+                <input type="number" placeholder="Enter price (VND)" class="form-control" name="price" value="${PARKING_LOT.parkPrice }">
             </div>
-        </div>    
+        </div>
+         <c:if test="${PARKING_LOT != null}">
+			<div class="form-group row">
+            <label for="" class="col-md-3 col-form-label">Status</label>
+            <div class="col-md-9">
+                <input type="text" placeholder="Enter status" class="form-control" name="parkStatus" value="${PARKING_LOT.parkStatus }">
+            </div>
+        </div>			
+	    </c:if>     
         <div class="form-row">
             <label for="" class="col-md-3 col-form-label"></label>
             <div class="col-md-9">
@@ -42,14 +67,7 @@
         </div>         
     </form>
  <%@ include file="include/footer.jsp" %>
-    <script src="../public\js\jquery-3.4.1.js"></script>
-	<script src="../public\js\bootstrap.js"></script>
-    <script src="../public\js\scripts.js"></script>
-    <script src="../public\js/validate/jquery.validate.min.js"></script>
- 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
- 
-    <script src="../public/js/validate/ParkinglotValidate.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/validate/ParkinglotValidate.js"></script>
 
 </body>
 </html>

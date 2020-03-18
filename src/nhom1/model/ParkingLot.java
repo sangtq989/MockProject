@@ -5,12 +5,12 @@ public class ParkingLot {
 	private int parkArea;
 	private String parkName;
 	private String parkPlace;
-	private int parkPrice;
+	private double parkPrice;
 	private String parkStatus;
 	public ParkingLot() {
 		super();
 	}
-	public ParkingLot(int parkId, int parkArea, String parkName, String parkPlace, int parkPrice, String parkStatus) {
+	public ParkingLot(int parkId, int parkArea, String parkName, String parkPlace, double parkPrice, String parkStatus) {
 		super();
 		this.parkId = parkId;
 		this.parkArea = parkArea;
@@ -19,7 +19,14 @@ public class ParkingLot {
 		this.parkPrice = parkPrice;
 		this.parkStatus = parkStatus;
 	}
-	public ParkingLot(int parkArea, String parkName, String parkPlace, int parkPrice, String parkStatus) {
+	public ParkingLot(int parkArea, String parkName, String parkPlace, double parkPrice) {
+		super();
+		this.parkArea = parkArea;
+		this.parkName = parkName;
+		this.parkPlace = parkPlace;
+		this.parkPrice = parkPrice;
+	}
+	public ParkingLot(int parkArea, String parkName, String parkPlace, double parkPrice, String parkStatus) {
 		super();
 		this.parkArea = parkArea;
 		this.parkName = parkName;
@@ -27,6 +34,8 @@ public class ParkingLot {
 		this.parkPrice = parkPrice;
 		this.parkStatus = parkStatus;
 	}
+	
+	
 	public int getParkId() {
 		return parkId;
 	}
@@ -51,10 +60,10 @@ public class ParkingLot {
 	public void setParkPlace(String parkPlace) {
 		this.parkPlace = parkPlace;
 	}
-	public int getParkPrice() {
+	public double getParkPrice() {
 		return parkPrice;
 	}
-	public void setParkPrice(int parkPrice) {
+	public void setParkPrice(double parkPrice) {
 		this.parkPrice = parkPrice;
 	}
 	public String getParkStatus() {
@@ -63,10 +72,7 @@ public class ParkingLot {
 	public void setParkStatus(String parkStatus) {
 		this.parkStatus = parkStatus;
 	}
-	@Override
-	public String toString() {
-		return "ParkingLot [parkId=" + parkId + ", parkArea=" + parkArea + ", parkName=" + parkName + ", parkPlace="
-				+ parkPlace + ", parkPrice=" + parkPrice + ", parkStatus=" + parkStatus + "]";
-	}
+	
+	
 	
 }

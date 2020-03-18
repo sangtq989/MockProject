@@ -5,17 +5,27 @@ public class Car {
 	private String carColor;
 	private String carType;
 	private String company;
-	private int parkId;
+	private ParkingLot parkId;
 	
 	public Car() {
 		super();
 	}
 
-	public Car(String licensePlate, String carColor, String carType, String company, int parkId) {
+	public Car(String licensePlate, String carColor, String carType, String company, ParkingLot parkId) {
 		super();
 		this.licensePlate = licensePlate;
-		this.carColor = carColor;
-		this.carType = carType;
+		if (carColor == null) {
+			this.carColor = "";
+		} else {
+			this.carColor = carColor;
+		}
+		
+		if (carType == null) {
+			this.carType = "";
+		} else {
+			this.carType = carType;
+		}
+		
 		this.company = company;
 		this.parkId = parkId;
 	}
@@ -52,19 +62,16 @@ public class Car {
 		this.company = company;
 	}
 
-	public int getParkId() {
+	public ParkingLot getParkId() {
 		return parkId;
 	}
 
-	public void setParkId(int parkId) {
+	public void setParkId(ParkingLot parkId) {
 		this.parkId = parkId;
 	}
 
-	@Override
-	public String toString() {
-		return "Car [licensePlate=" + licensePlate + ", carColor=" + carColor + ", carType=" + carType + ", company="
-				+ company + ", parkId=" + parkId + "]";
-	}
+
+	
 
 	
 }

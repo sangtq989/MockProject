@@ -2,8 +2,13 @@ $(document).ready(function() {
 	$.validator.addMethod("notNumb", function(value){
 		var reg = /^\D*$/;
 		return value.trim().match(reg);
-	}, ""
-	);
+	}, "");
+	
+	$.validator.addMethod("isNum", function(value){
+		var reg = /[+-]?([0-9]*[.])?[0-9]+/;
+		return value.trim().match(reg);
+	}, "");
+	
 	$("#parkingLotForm").validate({
 		errorElement: 'div',
 			errorPlacement: function(label, element) {
@@ -18,20 +23,17 @@ $(document).ready(function() {
 				notNumb: true
 			},	
             place: {
-				required: true,
-				minlength: 5
+				required: true,			
 			},
 			area: {
 				required: true,
-				minlength: 2,
-				maxlength: 50,
-				notNumb: true
+				isNum: true
+				
 			},
 			price: {
-				required: true,
-				minlength: 1,
+				required: true,				
 				maxlength: 50,
-				digits: true
+				isNum: true
 			},
 		},
 		messages: {
@@ -43,20 +45,18 @@ $(document).ready(function() {
 			},
 
 			place:{
-				required: "Please choose place"
+				required: "Please choose place",
+				isNum: "Must be number"
 			},
             
             area:{
-				required: "Please enter booking office name",
-				minlength: "Booking office name must consist of at least 2 characters",
-				maxlength: "Booking office name max 50 characters",
-				notNumb: "Must be a characters"
+				required: "Please enter area",			
+				isNum: "Must be number"
 			},
 
 
 			price: {
-				required: "Please enter price",
-				minlength: "Price must be at least 1 characters",
+				required: "Please enter price",				
 				maxlength: "Price max 50 characters",
 				digits: "Must be number"
 			},

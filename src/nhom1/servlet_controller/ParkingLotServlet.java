@@ -1,11 +1,18 @@
 package nhom1.servlet_controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import nhom1.dao.ParkingLotDAO;
+import nhom1.model.ParkingLot;
 
 /**
  * Servlet implementation class Controller
@@ -13,15 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ParkingLotServlet")
 public class ParkingLotServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ParkingLotServlet() {
-		super();
-		// TODO Auto-generated constructor stub
+	private ParkingLotDAO parkinglotDao;
+	
+	public void init() {
+		 parkinglotDao = new ParkingLotDAO();
 	}
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -44,11 +51,14 @@ public class ParkingLotServlet extends HttpServlet {
 			case "ADD":
 				addParkingLot(request, response);
 				break;
-			case "LOAD":
+			case "LOAD_ADD":
 				loadParkingLot(request, response);
 				break;
 			case "UPDATE":
 				updateParkingLot(request, response);
+				break;
+			case "LOAD_UPDATE":
+				updateParkingLotLoad(request, response);
 				break;
 			case "DELETE":
 				deleteParkingLot(request, response);
@@ -62,28 +72,73 @@ public class ParkingLotServlet extends HttpServlet {
 
 	}
 
-	private void deleteParkingLot(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void updateParkingLotLoad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("parkingLotID");		
+		Integer parkingLotID = Integer.parseInt(id);
+		if (parkingLotID == null | parkinglotDao.getParkingLotById(parkingLotID) == null) {
+			response.sendRedirect(request.getContextPath() + "/ParkingLotServlet?message="  + URLEncoder.encode("Something wrong, Try again", "UTF-8"));
+			System.out.println("not avaiabale");
+		}else {
+			ParkingLot parkingLot = parkinglotDao.getParkingLotById(parkingLotID);			
+			request.setAttribute("PARKING_LOT", parkingLot);		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("form/form-add-parkinglot.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		
 	}
 
-	private void updateParkingLot(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+
+	private void deleteParkingLot(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String id = request.getParameter("parkingLotID");		
+		int parkingLotID = Integer.parseInt(id);
+		if (parkinglotDao.deleteParkingLot(parkingLotID)) {
+			response.sendRedirect(request.getContextPath() + "/ParkingLotServlet?success=" + URLEncoder.encode("Delete successfuly", "UTF-8"));
+		} else {
+			response.sendRedirect(request.getContextPath() + "/ParkingLotServlet?message=" + URLEncoder.encode("Can't delete", "UTF-8"));	
+		}
 		
 	}
 
-	private void loadParkingLot(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void updateParkingLot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String parkingName = request.getParameter("parkingName");
+		String place = request.getParameter("place");
+		String parkingArea = request.getParameter("area");
+		String parkingPrice = request.getParameter("price");
+		String id = request.getParameter("parkingID");
+		String status = request.getParameter("parkStatus");
+		int parkingID = Integer.parseInt(id);
+		ParkingLot parkingLot = new ParkingLot(parkingID,Integer.parseInt(parkingArea), parkingName, place, Double.parseDouble(parkingPrice),status);
+		if (parkinglotDao.updateParkingLot(parkingLot)) {
+			response.sendRedirect(request.getContextPath() + "/ParkingLotServlet");
+		}else {
+			request.getRequestDispatcher("/ParkingLotServlet?message="+ URLEncoder.encode("Something wrong", "UTF-8")).forward(request, response);
+		}
 		
 	}
 
-	private void addParkingLot(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void loadParkingLot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("form/form-add-parkinglot.jsp");
+		dispatcher.forward(request, response);		
 	}
 
-	private void listParkingLot(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void addParkingLot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String parkingName = request.getParameter("parkingName");
+		String place = request.getParameter("place");
+		String parkingArea = request.getParameter("area");
+		String parkingPrice = request.getParameter("price");
+		ParkingLot parkingLot = new ParkingLot(Integer.parseInt(parkingArea), parkingName, place, Double.parseDouble(parkingPrice));
+		if (parkinglotDao.addParkingLot(parkingLot)) {
+			response.sendRedirect(request.getContextPath() + "/ParkingLotServlet");
+		} else {
+			request.getRequestDispatcher("/ParkingLotServlet?command=LOAD_ADD&message="  + URLEncoder.encode("Something wrong", "UTF-8")).forward(request, response);
+		}
+	}
+
+	private void listParkingLot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<ParkingLot> list = parkinglotDao.getAllParkingLot();
+		request.setAttribute("LIST_PARKING_LOT", list);		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("form/table-parking-lot.jsp");
+		dispatcher.forward(request, response);		
 	}
 }

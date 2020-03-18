@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +37,11 @@
                     <label for="" class="form-check-label">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" name="gender" value="2" class="form-check-input">
+                    <input type="radio" name="gender" value="0" class="form-check-input">
                     <label for="" class="form-check-label">Female</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" name="gender" value="3" class="form-check-input">
+                    <input type="radio" name="gender" value="2" class="form-check-input">
                     <label for="" class="form-check-label">Other</label>
                 </div>
             </div>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
     <title>Form add employee</title>
     <%@ include file="include/header.jsp" %>
     <%@ include file="include/sidebar.jsp" %>
-    <form action="#" method="post" id="tripForm">
+    <form action="${pageContext.request.contextPath}/TripServlet?command=ADD" method="post" id="tripForm">
         <div class="form-group row">
             <label for="" class="col-md-3 col-form-label">Destination</label>
             <div class="col-md-9">
@@ -16,7 +19,7 @@
         <div class="form-group row">
             <label for="" class="col-md-3 col-form-label">Departure time</label>
             <div class="col-md-9">
-                <input type="text" placeholder="Enter departure time" class="form-control" name="departureTime">
+                <input type="time" placeholder="Enter departure time" class="form-control" name="departureTime">
             </div>
         </div>
         <div class="form-group row">
@@ -52,13 +55,6 @@
         </div>   
     </form>
  <%@ include file="include/footer.jsp" %>
-    <script src="../public\js\jquery-3.4.1.js"></script>
-	<script src="../public\js\bootstrap.js"></script>
-    <script src="../public\js\scripts.js"></script>
-    <script src="../public\js/validate/jquery.validate.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
-    <script src="../public/js/validate/TripValidate.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/validate/TripValidate.js"></script>
 </body>
 </html>
