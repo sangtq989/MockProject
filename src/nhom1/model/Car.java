@@ -70,6 +70,12 @@ public class Car {
 		this.parkId = parkId;
 	}
 
+	@Override
+	public String toString() {
+		return "Car [licensePlate=" + licensePlate + ", carColor=" + carColor + ", carType=" + carType + ", company="
+				+ company + ", parkId=" + parkId + "]";
+	}
+
 
 	
 

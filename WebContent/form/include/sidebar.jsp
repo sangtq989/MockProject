@@ -1,3 +1,4 @@
+<%@page import="nhom1.model.Employee"%>
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -112,6 +113,10 @@
                             <a class="nav-link" href="${pageContext.request.contextPath}/TicketServlet">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 <span class="pl-1"> List ticket</span>                               
+                            </a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/TicketServlet?command=LOAD">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span class="pl-1"> Add ticket</span>                               
                             </a>
                             
                         </nav>

@@ -3,7 +3,6 @@ package nhom1.servlet_controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -21,7 +20,7 @@ import nhom1.model.Ticket;
 import nhom1.model.Trip;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class TicketServlet
  */
 @WebServlet("/TicketServlet")
 public class TicketServlet extends HttpServlet {
@@ -39,10 +38,7 @@ public class TicketServlet extends HttpServlet {
 		tripDao = new TripDAO();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -67,10 +63,7 @@ public class TicketServlet extends HttpServlet {
 				addTicket(request, response);
 				break;
 			case "LOAD":
-				loadTicket(request, response);
-				break;
-			case "UPDATE":
-				updateTicket(request, response);
+				loadTicket(request, response);				
 				break;
 			case "DELETE":
 				deleteTicket(request, response);
@@ -91,10 +84,6 @@ public class TicketServlet extends HttpServlet {
 		listTicket(request, response);
 	}
 
-	private void updateTicket(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void loadTicket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Trip> listTrip = tripDao.getAllTrip();
@@ -114,7 +103,7 @@ public class TicketServlet extends HttpServlet {
 		String customerName = request.getParameter("customerName");
 		String licensePlate = request.getParameter("licensePlate");
 		try {
-			int tripId = Integer.parseInt(request.getParameter("tripId"));
+			int tripId = Integer.parseInt(request.getParameter("trip"));
 			Ticket t = new Ticket(customerName, licensePlate, tripId);
 			dao.addTicket(t);
 			listTicket(request, response);
@@ -129,10 +118,6 @@ public class TicketServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			List<Ticket> list = dao.getAllTicket();
-			for (Ticket ticket : list) {
-				ticket.setCar(carDao.getCarById(ticket.getLicensePlate()));
-				ticket.setTrip(tripDao.getTripById(ticket.getTickedId()));
-			}	
 			System.out.println(list);
 			request.setAttribute("LIST_TICKET", list);
 			// DIEN FILE JSP
@@ -143,5 +128,9 @@ public class TicketServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 }

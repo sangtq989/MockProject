@@ -96,11 +96,13 @@ public class Trip {
 	public void setMaximumOnlineTicketNumber(int maximumOnlineTicketNumber) {
 		this.maximumOnlineTicketNumber = maximumOnlineTicketNumber;
 	}
+
 	@Override
 	public String toString() {
 		return "Trip [tripId=" + tripId + ", bookedTicketNumber=" + bookedTicketNumber + ", carType=" + carType
 				+ ", departureDate=" + departureDate + ", departureTime=" + departureTime + ", destination="
 				+ destination + ", driver=" + driver + ", maximumOnlineTicketNumber=" + maximumOnlineTicketNumber + "]";
 	}
+
 	
 }

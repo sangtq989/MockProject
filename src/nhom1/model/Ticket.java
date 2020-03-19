@@ -62,11 +62,6 @@ public class Ticket {
 	public void setTripId(int tripId) {
 		this.tripId = tripId;
 	}
-	@Override
-	public String toString() {
-		return "Ticket [tickedId=" + tickedId + ", bookingTime=" + bookingTime + ", customerName=" + customerName
-				+ ", licensePlate=" + licensePlate + ", tripId=" + tripId + "]";
-	}
 	public Car getCar() {
 		return car;
 	}
@@ -77,6 +72,19 @@ public class Ticket {
 		return trip;
 	}
 	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+	@Override
+	public String toString() {
+		return "Ticket [tickedId=" + tickedId + ", bookingTime=" + bookingTime + ", customerName=" + customerName
+				+ ", licensePlate=" + licensePlate + ", tripId=" + tripId + ", car=" + car + ", trip=" + trip + "]";
+	}
+	public Ticket(int tickedId, String bookingTime, String customerName, Car car, Trip trip) {
+		super();
+		this.tickedId = tickedId;
+		this.bookingTime = bookingTime;
+		this.customerName = customerName;
+		this.car = car;
 		this.trip = trip;
 	}
 	

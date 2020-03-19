@@ -40,15 +40,15 @@
 		</tfoot>
 		<tbody>
 			<c:forEach var="ticket" items="${LIST_TICKET}">
-				<tr>
-					<td>${ticket.employeeName}</td>
-					<td>${ticket.account}</td>
-					<td>${ticket.department}</td>
-					<td>${ticket.employeeAddress}</td>
-					<td>${ticket.employeeBirthDate}</td>
-					<td>${ticket.employeeEmail}</td>					
-					<td>Update</td>
-				</tr>
+				 <tr>
+					<td>${ticket.tickedId}</td>
+					<td>${ticket.trip.destination}</td>
+					<td>${ticket.car.licensePlate}</td>
+					<td>${ticket.customerName}</td>
+					<td>${ticket.bookingTime}</td>
+					<td>${ticket.trip.departureTime}</td>					
+					<td>Delete</td>
+				</tr> 
 			</c:forEach>
 		</tbody>
 	</table>

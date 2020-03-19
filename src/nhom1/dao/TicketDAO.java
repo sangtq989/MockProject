@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nhom1.connection.ConnectionClass;
+import nhom1.model.Car;
 import nhom1.model.Ticket;
+import nhom1.model.Trip;
 import nhom1.ultility.TicketQuery;
 
 public class TicketDAO {
 	private Connection connection;
 	private PreparedStatement preparedStmt;
 	private ResultSet rs;
+	private CarDAO cardao = new CarDAO();
+	private TripDAO tripdao = new TripDAO();
 
 	public boolean addTicket(Ticket tk) {
 		try {
@@ -53,7 +57,14 @@ public class TicketDAO {
 				String customerName = rs.getString("ticket_customer_name");
 				String licensePlate = rs.getString("ticket_license_plate");
 				int tripId = rs.getInt("ticket_trip_id");
-				Ticket tk = new Ticket(ticketId, bookingTime, customerName, licensePlate, tripId);
+				String carColor = rs.getString("car_color");
+				String carType = rs.getString("car_type");
+				String carCompany = rs.getString("car_company");
+				String tripDate = rs.getString("trip_departure_date");
+				String tripDTime = rs.getString("trip_departure_time");
+				String destination = rs.getString("trip_destination");
+				String driver = rs.getString("trip_driver");
+				Ticket tk = new Ticket(ticketId, bookingTime, customerName, new Car(licensePlate, carColor, carType, carCompany, null), new Trip(tripId,carType, tripDate, tripDTime, destination, driver, 0));
 				list.add(tk);
 			}
 			return list;
