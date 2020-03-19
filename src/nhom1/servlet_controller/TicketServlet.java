@@ -1,6 +1,9 @@
 package nhom1.servlet_controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nhom1.dao.CarDAO;
-import nhom1.dao.ParkingLotDAO;
 import nhom1.dao.TicketDAO;
+import nhom1.dao.TripDAO;
+import nhom1.model.Car;
 import nhom1.model.Ticket;
+import nhom1.model.Trip;
 
 /**
  * Servlet implementation class Controller
@@ -22,11 +27,16 @@ import nhom1.model.Ticket;
 public class TicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TicketDAO dao;
+	private CarDAO carDao;
+	private TripDAO tripDao;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public void init() {
 		dao = new TicketDAO();
+		carDao = new CarDAO();
+		tripDao = new TripDAO();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,29 +96,47 @@ public class TicketServlet extends HttpServlet {
 		
 	}
 
-	private void loadTicket(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void loadTicket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Trip> listTrip = tripDao.getAllTrip();
+		System.out.println(listTrip);
+		List<Car> listCar = carDao.getAllCar();
+		
+		request.setAttribute("LIST_TRIP", listTrip);
+		request.setAttribute("LIST_CAR", listCar);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("form/form-add-ticket.jsp");
+		dispatcher.forward(request, response);
 		
 	}
 
-	private void addTicket(HttpServletRequest request, HttpServletResponse response) {
+	private void addTicket(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
 		// TODO Auto-generated method stub
-		String bookingTime = request.getParameter("bookingTime");
 		String customerName = request.getParameter("customerName");
 		String licensePlate = request.getParameter("licensePlate");
-		int tripId = Integer.parseInt(request.getParameter("tripId"));
-		Ticket t = new Ticket(bookingTime, customerName, licensePlate, tripId);
-		dao.addTicket(t);
-		listTicket(request, response);
+		try {
+			int tripId = Integer.parseInt(request.getParameter("tripId"));
+			Ticket t = new Ticket(customerName, licensePlate, tripId);
+			dao.addTicket(t);
+			listTicket(request, response);
+		} catch (Exception e) {
+			response.sendRedirect(request.getContextPath() + "/TicketServlet?command=LOAD&message="  + URLEncoder.encode("Something wrong, Try again", "UTF-8"));
+		}
+		
+		
 	}
 
 	private void listTicket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		try {
 			List<Ticket> list = dao.getAllTicket();
+			for (Ticket ticket : list) {
+				ticket.setCar(carDao.getCarById(ticket.getLicensePlate()));
+				ticket.setTrip(tripDao.getTripById(ticket.getTickedId()));
+			}	
+			System.out.println(list);
 			request.setAttribute("LIST_TICKET", list);
 			// DIEN FILE JSP
-			RequestDispatcher dispatcher = request.getRequestDispatcher("");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("form/table-ticket.jsp");
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block

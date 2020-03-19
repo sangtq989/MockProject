@@ -27,7 +27,7 @@ public class Test {
 //		System.out.println(testParking.addParkingLot(new ParkingLot(200, "oof", "Binh", 2000.0, "he")));
 //		System.out.println(testTrip.addTrip(new Trip(10,"sedam","2020","12:00","das","asd",332)));
 //		System.out.println(testParking.deleteParkingLot(1111111));
-		System.out.println(bookingOffice.addBookingOffice(new BookingOffice("","")));
+//		System.out.println(bookingOffice.addBookingOffice(new BookingOffice("","")));
 //		System.out.println(testCar.deleteCar("22b-30598"));
 	}
 

@@ -7,6 +7,8 @@ public class Ticket {
 	private String customerName;
 	private String licensePlate;
 	private int tripId;
+	private Car car;
+	private Trip trip;
 	public Ticket() {
 		super();
 	}
@@ -24,6 +26,11 @@ public class Ticket {
 		this.customerName = customerName;
 		this.licensePlate = licensePlate;
 		this.tripId = tripId;
+	}
+	public Ticket(String customerName2, String licensePlate2, int tripId2) {
+		this.customerName = customerName2;
+		this.licensePlate = licensePlate2;
+		this.tripId = tripId2;
 	}
 	public int getTickedId() {
 		return tickedId;
@@ -59,6 +66,18 @@ public class Ticket {
 	public String toString() {
 		return "Ticket [tickedId=" + tickedId + ", bookingTime=" + bookingTime + ", customerName=" + customerName
 				+ ", licensePlate=" + licensePlate + ", tripId=" + tripId + "]";
+	}
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
+	}
+	public Trip getTrip() {
+		return trip;
+	}
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 	
 }

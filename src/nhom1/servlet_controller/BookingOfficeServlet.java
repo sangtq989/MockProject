@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nhom1.dao.BookingOfficeDAO;
-import nhom1.dao.CarDAO;
 import nhom1.dao.TripDAO;
 import nhom1.model.BookingOffice;
 import nhom1.model.Trip;

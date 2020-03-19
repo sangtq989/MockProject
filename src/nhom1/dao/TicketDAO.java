@@ -20,10 +20,9 @@ public class TicketDAO {
 		try {
 			connection = ConnectionClass.createConnect().getConnection();
 			preparedStmt = connection.prepareStatement(TicketQuery.INSERT_TICKET);
-			preparedStmt.setString(1, tk.getBookingTime());
-			preparedStmt.setString(2, tk.getCustomerName());
-			preparedStmt.setString(3, tk.getLicensePlate());
-			preparedStmt.setInt(4, tk.getTripId());
+			preparedStmt.setString(1, tk.getCustomerName());
+			preparedStmt.setString(2, tk.getLicensePlate());
+			preparedStmt.setInt(3, tk.getTripId());
 			preparedStmt.execute();
 			return true;
 		} catch (SQLException e) {
